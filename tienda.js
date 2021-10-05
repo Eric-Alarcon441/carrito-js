@@ -49,6 +49,10 @@ function addItemToShoppingCart(itemTitle, itemImage, itemPrice) {
     .querySelector(".buttonDelete")
     .addEventListener("click", removeShoppingCartItem);
 
+  shoppingCartRow
+    .querySelector(".shoppingCartItemQuantity")
+    .addEventListener("change", quantityChanged);
+
   updateShoppingCartTotal();
 }
 
@@ -80,5 +84,11 @@ function updateShoppingCartTotal() {
 function removeShoppingCartItem(event) {
   const buttonClicked = event.target;
   buttonClicked.closest(".shoppingCartItem").remove();
+  updateShoppingCartTotal();
+}
+
+function quantityChanged(event) {
+  const input = event.target;
+  input.value <= 0 ? (input.value = 1) : null;
   updateShoppingCartTotal();
 }
